@@ -6,7 +6,7 @@
 }
 .center_block{
     margin: 0 auto;
-    max-width: 1024px;
+    max-width: 1440px;
 }
 .header{
     padding: 0.5em 1em;
@@ -33,6 +33,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    max-width: 1024px;
+    max-width: 1440px;
     padding: 2em;
+}
+.product_item{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    background-color: white;
+    margin: 1em;
+}
+.title{
+    padding-top: 0.5em;
+}
+.price{
+    padding: 0.5em 0;
+}
+.buy_btn{
+    padding: 0.2em 0.5em;
+    background-color: white;
+    border-radius: 50px 50px;
 }

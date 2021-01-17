@@ -20,15 +20,20 @@ const products = [
 ];
 
 
-const renderProduct = (title, price) => {
-    return `<div class="product-item">
-                <h3>${title}</h3>
-                <p>${price}</p>
-            </div>`
+const renderProduct = (product, img = 'https://placehold.it/120x100') => {
+    const{title = "Название товара", price = 100} = product;
+    return `<div class="product_item">
+    <img src="${img}" alt="${title}">
+    <div class="description">
+    <h3 class="title">${title}</h3>
+    <p class="price">${price}</p>
+    <button class="buy_btn">Добавить</button>
+    </div>
+    </div>`
 };
 
 const render = productsList => {
-    const productsElements = productsList.map(item => renderProduct(item.title, item.price));
+    const productsElements = productsList.map(product => renderProduct(product)).join('');
     document.querySelector('.products').innerHTML = productsElements;
 };
 
