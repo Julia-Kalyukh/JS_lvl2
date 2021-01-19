@@ -66,14 +66,19 @@ var products = [{
   price: 1100
 }];
 
-var renderProduct = function renderProduct(title, price) {
-  return "<div class=\"product-item\">\n                <h3>".concat(title, "</h3>\n                <p>").concat(price, "</p>\n            </div>");
+var renderProduct = function renderProduct(product) {
+  var img = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'https://placehold.it/120x100';
+  var _product$title = product.title,
+      title = _product$title === void 0 ? "Название товара" : _product$title,
+      _product$price = product.price,
+      price = _product$price === void 0 ? 100 : _product$price;
+  return "<div class=\"product_item\">\n    <img src=\"".concat(img, "\" alt=\"").concat(title, "\">\n    <div class=\"description\">\n    <h3 class=\"title\">").concat(title, "</h3>\n    <p class=\"price\">").concat(price, "</p>\n    <button class=\"buy_btn\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n    </div>\n    </div>");
 };
 
 var render = function render(productsList) {
-  var productsElements = productsList.map(function (item) {
-    return renderProduct(item.title, item.price);
-  });
+  var productsElements = productsList.map(function (product) {
+    return renderProduct(product);
+  }).join('');
   document.querySelector('.products').innerHTML = productsElements;
 };
 
