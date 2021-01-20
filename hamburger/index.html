@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   <form action="#" id="burger_form">
+    <fieldset id="burger_block">
+        <h1>Собери свой гамбургер:</h1>
+        <fieldset class="burger_fieldset_block">
+            <h2>Размер гамбургера:</h2>
+            <input type="radio" name="size" id="smallburger" value="small" class="burger_input">
+            <label for="smallburger">Маленький (+50 рублей, +20 калорий)</label><br>
+            <input type="radio" name="size" id="bigburger" value="big" class="burger_input" >
+            <label for="bigburger">Большой (+100 рублей, +40 калорий)</label><br>
+        </fieldset>
+
+        <fieldset class="burger_fieldset_block">
+            <h2>Начинка гамбургера:</h2>
+            <input type="radio" name="filling" id="cheese" value="cheese" class="burger_input" >
+            <label for="cheese">Сыр (+10 рублей, +20 калорий)</label><br>
+            <input type="radio" name="filling" id="salad" value="salad" class="burger_input">
+            <label for="salad">Салат (+20 рублей, +5 калорий)</label><br>
+            <input type="radio" name="filling" id="potato" value="potato" class="burger_input">
+            <label for="potato">Картофель (+15 рублей, +10 калорий)</label><br>
+        </fieldset>
+
+        <fieldset class="burger_fieldset_block">
+            <h2>Топпинг:</h2>
+            <input type="checkbox" name="topings" id="seasoning" value="seasoning_value" class="burger_input">
+            <label for="seasoning">Посыпать приправой (+15 рублей, +0 калорий)</label><br>
+            <input type="checkbox" name="topings" id="mayonnaise" value="mayo" class="burger_input">
+            <label for="mayonnaise">Полить майонезом (+20 рублей, +5 калорий)</label><br>
+        </fieldset>
+        <br>
+        <button id="check">Собрать бургер</button>
+        <input id="reset" type="reset" value="Очистить"></p>
+
+        <p id="result">Cтоимость: <span id="price">0</span> <br>
+            Калории: <span id="calories">0</span></p>
+    </fieldset>
+</form>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

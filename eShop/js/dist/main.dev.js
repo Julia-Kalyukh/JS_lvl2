@@ -54,7 +54,16 @@ function () {
 
   _createClass(ProductsList, [{
     key: "init",
-    value: function init() {}
+    value: function init() {} // 2. Добавьте для ProductsList метод, определяющий суммарную стоимость всех товаров. 
+
+  }, {
+    key: "calcSum",
+    value: function calcSum() {
+      var initialValue = 0;
+      return this.products.reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue.price;
+      }, initialValue);
+    }
   }, {
     key: "_fetchData",
     value: function _fetchData() {
@@ -158,7 +167,21 @@ function () {
   return ProductsList;
 }();
 
-var list = new ProductsList(); //class Cart {
-//constructor() {
-// name - свойство в котором лежит имя
-// some() - метод для подсчета стоимости корзины
+var list = new ProductsList(); // выведение результата
+
+alert("Сумма = " + list.calcSum());
+/*class Cart {
+    constructor() {
+        let { title = "Название товара", price = 100, id } = product;
+        this.title = title;
+        this.img = img;
+        this.price = price;
+        this.id = id;
+    }
+
+    Возможные методы:
+    1. Добавление товара - Cart.addItem( $object );
+    2. Удаление товара - Cart.removeItem( variant_id [, $link] );
+    3. Пересчет корзины - Cart.recalculateOrder( form );
+    4. Обновление состава корзины - 'onCart_Update' - возвращает актуальный состав корзины.
+*/
