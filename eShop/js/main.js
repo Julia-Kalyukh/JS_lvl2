@@ -1,3 +1,86 @@
+const Shop = {
+
+    data() {
+        return {
+            API: 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses',
+            catalogUrl: '/catalogData.json',
+            products: [],
+            imgCatalog: 'https://placehold.it/120x100',
+            search: '',
+            basketUrl: '/getBasket.json',
+            basketItem: [],
+            imgBasket: 'https://placehold.it/60x50',
+            removeBasket: false,
+        }
+    },
+
+    computed: {
+        filterProducts() {
+            return this.products.filter( item => RegExp(this.search).test(item.product_name));
+        }
+    },
+
+    methods: {
+        getJson(url) {
+            return fetch(url ? url : `${List.API + this.url}`)
+                .then(result => result.json())
+                .catch(error => console.log(error));
+        },
+        addProduct(product) {
+            this.getJson(`${this.API}/addToBasket.json`)
+                .then(data => {
+                    if (data.result) {
+                        let find = this.basketItem.find(el => el.id_product === product.id_product);
+                        if (find) {
+                            find.quantity++
+                        } else {
+                            let prod = Object.assign({ quantity: 1 }, product);
+                            this.basketItem.push(prod);
+                        }
+                    }
+                });
+        },
+        remove(product) {
+            this.getJson(`${this.API}/deleteFromBasket.json`)
+            .then(data => {
+                if (data.result) {
+                    if (product.quantity > 0) {
+                        product.quantity--
+                    } else {
+                        this.basketItem.splise(this.basketItem.indexOf(product), 1);
+                    }
+                }
+            });
+        }
+    },
+    mounted() {
+        this.getJson(`${this.API + this.catalogUrl}`)
+            .then(data => {
+                for (let product of data) {
+                    this.products.push(product);
+                }
+        });
+        this.getJson(`getProducts.json`)
+            .then(data => {
+                for (let product of data) {
+                    this.products.push(product);
+                }
+        });
+        this.getJson(`${this.API + this.cartUrl}`)
+            .then(data => {
+                for (let product of data.contents) {
+                    this.basketItem.push(product);
+                }
+        });
+
+}
+};
+
+Vue.createApp(Shop).mount('#block');
+
+/*
+
+
 // Задание 1
 
 let getData = (url) => {
@@ -104,7 +187,7 @@ class List {
         }
     
         calcSum() {
-        	return this.products.reduce((accumulator, currentValue) => accumulator += currentValue.price, 0);
+            return this.products.reduce((accum, item) => accum += item.price, 0);
         }
     
         getJson(url) {
@@ -225,3 +308,4 @@ class Cart extends List {
     let cart = new Cart();
     const list = new ProductsList(cart);
     list.getJson('getProducts.json').then(data => list.handleData(data));
+    */

@@ -6,21 +6,50 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="basket center_block">
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-block invisible"></div>
-        </div>
-    </header>
-    <main class="main">
-        <!--beforebegin-->
-        <div class="products center_block">
-            <!--afterbegin-->
-            <!--            beforeend-->
-        </div>
-            <!--        afterend-->
-    </main>
+    <div id="block">
+        <header class="header">
+            <div class="basket center_block">
+                <form action="#" class="search_form" @submit.prevent="">
+                    <input type="text" class="search_field" v-model="search">
+                    <button class="btn_search" type="submit">
+                        <i class="fas fa_search"></i>
+                    </button>
+                </form>
+                <button class="btn_basket" type="button" @click="removeBasket = !removeBasket">Корзина</button>
+                <div class="basket_block" v-show="removeBasket">
+                    <div class="basket_item" v-for="item of basketItem" ::key="item.id_product">
+                        <div class="product_bio">
+                            <img :src="imgBasket" :alt="item.product_name">
+                            <div class="product_desc">
+                                <p class="product_title">{{ item.product_name }}</p>
+                                <p class="product_quantity">Кол-во: {{ item.quantity }}</p>
+                                <p class="product_single_price">$ {{ item.price }}</p>
+                            </div>
+                        </div>
+                            <div class="right_block">
+                                <p class="product_price">$ {{ item.quantity*item.price }}</p>
+                                <button class="del_btn" @click="remove(item)">Удалить</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="products center_block">
+                <div class="product_item" v-for="el of filterProducts" :key="el.id_product">
+                    <img :src="imgCatalog" :alt="el.product_name">
+                    <div class="desc">
+                        <h3>{{ el.product_name }}</h3>
+                        <p>{{ el.price }}</p>
+                        <button class="buy_btn" @click="addProduct(el)">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
