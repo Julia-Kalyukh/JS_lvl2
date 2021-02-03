@@ -5,7 +5,7 @@ export const Product = {
                 <div class="desc">
                     <h3>{{ el.product_name }}</h3>
                     <p>{{ el.price }}</p>
-                    <button class="buy_btn" @click="addProduct(el)">Купить</button>
+                    <button class="buy_btn" @click="$root.$refs.basket.addProduct(product)">Купить</button>
                 </div>
             </div>`
 };

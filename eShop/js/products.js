@@ -11,17 +11,13 @@ export const Products = {
             imgCatalog: 'https://placehold.it/120x100',
         }
     },
-    /*
-    methods: {
-        
-    },
+    
     computed: {
         filterProducts() {
-            return this.products.filter( item => RegExp(this.search, 'i').test(item.product_name));
+            return this.products.filter( item => RegExp(this.$root.$refs.search.search, 'i').test(item.product_name));
         }
     },
-    */
-
+    
     mounted() {
         this.$root.getJson(`getProducts.json`)
             .then(data => {
@@ -39,7 +35,7 @@ export const Products = {
 
     template: `<div class="products">
                     <Product
-                    v-for="el of products"
+                    v-for="el of filtered"
                     :key="el.id+product"
                     :img="imgCatalog"
                     :product="el"

@@ -9,35 +9,13 @@
 <body>
     <div id="block">
         <header class="header">
-            <div class="basket center_block">
-                <form action="#" class="search_form" @submit.prevent="">
-                    <input type="text" class="search_field" v-model.lazy="search">
-                    <button class="btn_search" type="submit">
-                        <i class="fas fa_search"></i>
-                    </button>
-                </form>
-                <button class="btn_basket" type="button" @click="removeBasket = !removeBasket">Корзина</button>
-                <div class="basket_block" v-show="removeBasket">
-                    <p v-if="!basketItem.length">Корзина пуста</p>
-                    <div class="basket_item" v-for="item of basketItem" :key="item.id_product">
-                        <div class="product_bio">
-                            <img :src="imgBasket" :alt="item.product_name">
-                            <div class="product_desc">
-                                <p class="product_title">{{ item.product_name }}</p>
-                                <p class="product_quantity">Кол-во: {{ item.quantity }}</p>
-                                <p class="product_single_price">$ {{ item.price }}</p>
-                            </div>
-                        </div>
-                            <div class="right_block">
-                                <p class="product_price">$ {{ item.quantity*item.price }}</p>
-                                <button class="del_btn" @click="remove(item)">Удалить</button>
-                            </div>
-                    </div>
-                </div>
+            <div class="center_block">
+                <search ref="search"></search>
+                <basket ref="basket"></basket>
             </div>
         </header>
         <main>
-            <Products ref="catalog"></Products>
+            <products ref="products"></products>
         </main>
     </div>
     
